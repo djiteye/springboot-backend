@@ -81,38 +81,7 @@ public class AuthController {
 
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-		/*System.out.println("les informations d'authentification sont: "+ loginRequest.getUsername()+" "+ loginRequest.getPassword());
-		Optional<User> princip= userRepository.findByUsername(loginRequest.getUsername());
-		LoginRequest pr= new LoginRequest(princip.get().getUsername(), princip.get().getPassword());
-		LoginRequest cr= new LoginRequest(loginRequest.getUsername(), loginRequest.getPassword());
-		System.out.println("les informations d'authentification du principal sont: "+ pr.getUsername()+" "+ pr.getPassword());
-		System.out.println("les informations d'authentification du crential sont: "+ cr.getUsername()+" "+ cr.getPassword());*/
-		
-		//if(encoder.matches(cr.getPassword(),pr.getPassword())/*pr.getPassword().equals(cr.getPassword())*/) {
-		/*	return ResponseEntity.ok(princip);
-		}
-		else{
-			return (ResponseEntity<?>) ResponseEntity.internalServerError();}*/
-	 
-	  /*  Authentication authentication = authenticationManager.authenticate(
-	            new UsernamePasswordAuthenticationToken(pr,cr));
-
-	    SecurityContextHolder.getContext().setAuthentication(authentication);
-	    String jwt = jwtUtils.generateJwtToken(authentication);
-
-	    UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-	    List<String> roles = userDetails.getAuthorities().stream()
-	            .map(GrantedAuthority::getAuthority)
-	            .collect(Collectors.toList());
-
-	    JwtResponse jwtResponse = new JwtResponse(jwt,
-	            userDetails.getId(),
-	            userDetails.getUsername(),
-	            userDetails.getEmail(),
-	            userDetails.getGenre(),
-	            roles);
-
-	    return ResponseEntity.ok(jwtResponse);*/
+	
 		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		User user = (User) authentication.getPrincipal();

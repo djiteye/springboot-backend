@@ -28,5 +28,8 @@ public class UserService {
 	 public void deleteUser(String id) {
 		 userR.deleteById(id);
 	 }
+	 public void updateUser(User user,String id) {
+		 userR.save(user);
+	 }
 
 }
